@@ -1,62 +1,41 @@
 const mongoose = require('mongoose');
 
-const commentSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
-  },
-  message: {
-    type: String,
-    required: true,
-  },
-  commentedAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
 
-const blogPostSchema = new mongoose.Schema({
-  title: {
+const userPostSchema = new mongoose.Schema({
+  firstName: {
     type: String,
     required: true,
-    unique: true,
-    minlength: 5,
+    
   },
-  content: {
+  lastName: {
     type: String,
-    required: true,
-    minlength: 50,
+   
   },
-  author: {
-    type: String,
-    required: true,
+  email:{
+type:String,
+required:true,
+
   },
-  tags: {
-    type: [String],
-    default: [],
-  },
-  category: {
-    type: String,
-    default: 'General',
-  },
-  likes: {
-    type: [String],
-    default: [],
-  },
-  comments: {
-    type: [commentSchema],
-    default: [],
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  updatedAt: {
-    type: Date,
-    default: null,
-  },
+password:{
+type:Number,
+required:true,
+},
+ currency:{
+  type:String,
+  default:'IND',
+ },
+ monthlyBudget:{
+type:Number,
+default:0
+
+ },
+ categories: { 
+  type: [String],
+   default: ['Food', 'Transport', 'Bills', 'Entertainment']
+   },
+
 }, {
-  timestamps: true, // Automatically adds 'createdAt' and 'updatedAt' fields
+  timestamps: true, 
 });
 
-module.exports = mongoose.model('BlogPost', blogPostSchema);
+module.exports = mongoose.model('Expense_Traker', userPostSchema);
